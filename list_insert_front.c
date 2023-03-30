@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_extract_after.c                               :+:      :+:    :+:   */
+/*   list_insert_front.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguyon <aguyon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 13:47:18 by aguyon            #+#    #+#             */
-/*   Updated: 2023/03/30 16:53:52 by aguyon           ###   ########.fr       */
+/*   Created: 2023/03/30 16:41:04 by aguyon            #+#    #+#             */
+/*   Updated: 2023/03/30 16:41:06 by aguyon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-t_element	*list_extract_after(t_list *list, t_element *elem)
+void	list_insert_front(t_list *list, t_element *new)
 {
-	t_element	*element_to_extract;
-
-	if (elem == NULL)
-	{
-		element_to_extract = list_extract_front(list);
-	}
-	else
-	{
-		element_to_extract = elem->next;
-		if (element_to_extract != NULL)
-		{
-			elem->next = element_to_extract->next;
-			if (element_to_extract == list->last)
-				list->last = elem;
-		}
-	}
-	return (element_to_extract);
+	new->next = list->first;
+	list->first = new;
+	if (list->last == NULL)
+		list->last = new;
 }
